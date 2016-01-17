@@ -9,7 +9,7 @@ var caveDiver = ( function( document, window ) {
 			apply_removed: true,
 			apply_added: true,
 			apply_modified: true,
-			callback: {
+			cb: {
 				remove: function( id ) { console.log( 'remove', id ); },
 				add: function( id, obj ) { console.log( 'add', id, obj ); },
 				modify: function( id, obj1, obj2 ) { console.log( 'modify', id, obj ); }
@@ -34,17 +34,17 @@ var caveDiver = ( function( document, window ) {
 
 				caveDiver.prototype.applyRemoved = function( log, key ) {
 					var log_ = extract__log( log, 'removed' );
-					this.apply_( log_, this.options.callback.remove );
+					this.apply_( log_, this.options.cb.remove );
 				};
 
 				caveDiver.prototype.applyAdded = function( log, comparison_array, key ) {
 					var log_ = extract__log( log, 'added' );
-					this.apply_( log_, this.options.callback.add, key, comparison_array );
+					this.apply_( log_, this.options.cb.add, key, comparison_array );
 				};
 
 				caveDiver.prototype.applyModified = function( log, base_array, comparison_array, key ) {
 					var log_ = extract__log( log, 'modified' );
-					this.apply_( log_, this.options.callback.modify, key, comparison_array );
+					this.apply_( log_, this.options.cb.modify, key, comparison_array );
 				};
 
 	caveDiver.prototype.apply_ = function( array, callback, key, return_obj_array_1, return_obj_array_2 ) {
