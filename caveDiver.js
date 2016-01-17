@@ -1,18 +1,20 @@
 var caveDiver = ( function( document, window ) {
 
 	function caveDiver() {
-		this.log = false;
-		this.compare_removed = true;
-		this.compare_added = true;
-		this.compare_modified = true;
-		this.apply_removed = true;
-		this.apply_added = true;
-		this.apply_modified = true;
-		this.callback = {
-			remove: function( id ) { console.log( 'remove', id ); },
-			add: function( id, obj ) { console.log( 'add', id, obj ); },
-			modify: function( id, obj1, obj2 ) { console.log( 'modify', id, obj ); }
-		};
+		this.options = {
+			log: false,
+			compare_removed: true,
+			compare_added: true,
+			compare_modified: true,
+			apply_removed: true,
+			apply_added: true,
+			apply_modified: true,
+			callback: {
+				remove: function( id ) { console.log( 'remove', id ); },
+				add: function( id, obj ) { console.log( 'add', id, obj ); },
+				modify: function( id, obj1, obj2 ) { console.log( 'modify', id, obj ); }
+			}
+		}
 	};
 
 	caveDiver.prototype.compare = function( base_array, comparison_array, key ) {
@@ -25,24 +27,24 @@ var caveDiver = ( function( document, window ) {
 		};
 
 			caveDiver.prototype.applyAll = function( log, base_array, comparison_array, key ) {
-				if ( this.apply_removed ) this.applyRemoved( log['removed'], key );
-				if ( this.apply_added ) this.applyAdded( log['added'], comparison_array, key );
-				if ( this.apply_modified ) this.applyModified( log['modified'], base_array, comparison_array, key );
+				if ( this.options.apply_removed ) this.applyRemoved( log['removed'], key );
+				if ( this.options.apply_added ) this.applyAdded( log['added'], comparison_array, key );
+				if ( this.options.apply_modified ) this.applyModified( log['modified'], base_array, comparison_array, key );
 			};
 
 				caveDiver.prototype.applyRemoved = function( log, key ) {
 					var log_ = extract__log( log, 'removed' );
-					this.apply_( log_, this.callback.remove );
+					this.apply_( log_, this.options.callback.remove );
 				};
 
 				caveDiver.prototype.applyAdded = function( log, comparison_array, key ) {
 					var log_ = extract__log( log, 'added' );
-					this.apply_( log_, this.callback.add, key, comparison_array );
+					this.apply_( log_, this.options.callback.add, key, comparison_array );
 				};
 
 				caveDiver.prototype.applyModified = function( log, base_array, comparison_array, key ) {
 					var log_ = extract__log( log, 'modified' );
-					this.apply_( log_, this.callback.modify, key, comparison_array );
+					this.apply_( log_, this.options.callback.modify, key, comparison_array );
 				};
 
 	caveDiver.prototype.apply_ = function( array, callback, key, return_obj_array_1, return_obj_array_2 ) {
@@ -78,9 +80,9 @@ var caveDiver = ( function( document, window ) {
 		base_ids = get__ids( base_array, key );
 		comparison_ids = get__ids( comparison_array, key );
 
-		if ( this.compare_removed ) response.removed = get__array_diff( base_ids, comparison_ids );
-		if ( this.compare_added ) response.added = get__array_diff( comparison_ids, base_ids );
-		//  if ( this.compare_modified ) response.modified = get__array_modifications( comparison_ids, base_ids );
+		if ( this.options.compare_removed ) response.removed = get__array_diff( base_ids, comparison_ids );
+		if ( this.options.compare_added ) response.added = get__array_diff( comparison_ids, base_ids );
+		//  if ( this.options.compare_modified ) response.modified = get__array_modifications( comparison_ids, base_ids );
 
 		return response;
 
