@@ -24,11 +24,13 @@ var caveDiver = ( function( document, window ) {
 				compare: function( lhs, rhs ) {
 					return lhs.timestamp === rhs.timestamp;
 				},
+
 				/*
 				|
 				|	todo: apply method?
 				|
 				| * /
+
 				add: function() {
 
 				},
@@ -38,6 +40,7 @@ var caveDiver = ( function( document, window ) {
 				apply: function() {
 
 				}
+
 				/* */
 			}
 		};
@@ -120,10 +123,6 @@ var caveDiver = ( function( document, window ) {
 		return find__match( obj, array, predicate );
 	};
 
-	function add__response() {
-
-	};
-
 	function get__flat_id_array( array, callback ) {
 		var index = 0;
 			length = array.length,
@@ -176,6 +175,12 @@ var caveDiver = ( function( document, window ) {
 		return valid_types.indexOf( typeof variable ) !== -1 ? true : false;
 	};
 
+	/*
+	|
+	|
+	|
+	| * /
+
 	function clone( variable ) {
 		if ( is__array( variable ) ) {
 			var copy = [],
@@ -197,6 +202,8 @@ var caveDiver = ( function( document, window ) {
 
 		return variable;
 	};
+
+	/* */
 
 	/*
 	|
