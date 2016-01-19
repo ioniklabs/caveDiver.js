@@ -1,3 +1,17 @@
+/*
+|
+|	caveDiver.js - diving deep into a JavaScript object array
+|	the caveDiver continus in search of lost and forgotten
+|	predicates... Okay that's enough of that. caveDiver.js
+|	makes it easy to compare two JavaScript object arrays and
+|	return information about changes.
+|
+|	credit: 	IonikLabs (http://www.ioniklabs.com)
+|	author: 	Matt Johnson
+|	source: 	https://github.com/ioniklabs/caveDiver.js 
+|
+| */
+
 var caveDiver = ( function( document, window ) {
 
 	function caveDiver( options ) {
