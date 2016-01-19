@@ -117,6 +117,10 @@ var caveDiver = ( function( document, window ) {
 		return find__match( obj, array, predicate );
 	};
 
+	caveDiver.prototype.find__index = function( obj, array, predicate ) {
+		return find__match( obj, array, predicate, true );
+	};
+
 	function get__flat_id_array( array, callback ) {
 		var index = 0;
 			length = array.length,
@@ -131,11 +135,11 @@ var caveDiver = ( function( document, window ) {
 		return array_id;
 	};
 
-	function find__match( obj, array, predicate ) {
+	function find__match( obj, array, predicate, return_index ) {
 		var index = 0,
 			length = array.length;
 		for ( index; index < length; index++ ) {
-			if ( predicate( obj, array[index] ) ) return array[index];
+			if ( predicate( obj, array[index] ) ) return return_index ? index : array[index];
 		}
 		return {};
 	};
