@@ -1,6 +1,7 @@
 var caveDiver = ( function( document, window ) {
 
 	function caveDiver( options ) {
+		var this_ = this;
 		this.options = {
 			return_id_array: false,
 			return_object_array: true,
@@ -19,29 +20,11 @@ var caveDiver = ( function( document, window ) {
 					return rhs;
 				},
 				match: function( lhs, rhs ) {
-					return lhs.id === rhs.id;
+					return this_.options.callback.id_lhs( lhs ) === this_.options.callback.id_rhs( rhs );
 				},
 				compare: function( lhs, rhs ) {
 					return lhs.timestamp === rhs.timestamp;
-				},
-
-				/*
-				|
-				|	todo: apply method?
-				|
-				| * /
-
-				add: function() {
-
-				},
-				remove: function() {
-
-				},
-				apply: function() {
-
 				}
-
-				/* */
 			}
 		};
 		if ( is__object( options ) ) this.options = extend( this.options, options );
@@ -85,9 +68,6 @@ var caveDiver = ( function( document, window ) {
 
 		for( index; index < length; index++ ) {
 			if ( rhs_id.indexOf( lhs_id[index] ) === -1 ) {
-
-				add__response( 'lhs' )
-
 				if ( this.options.return_id_array ) response.remove__id_array.push( lhs_id[index] );
 				if ( this.options.return_object_array ) response.remove__obj_array.push( this.options.return_clean_object_array ? this.options.callback.return_lhs( lhs[index] ) : lhs[index] );
 			} else {
@@ -174,36 +154,6 @@ var caveDiver = ( function( document, window ) {
 	function is__valid_type( variable, valid_types ) {
 		return valid_types.indexOf( typeof variable ) !== -1 ? true : false;
 	};
-
-	/*
-	|
-	|
-	|
-	| * /
-
-	function clone( variable ) {
-		if ( is__array( variable ) ) {
-			var copy = [],
-				index = 0,
-				length = variable.length;
-			for ( index; index < length; index++ ) {
-				copy[index] = clone(variable[index]);
-			}
-			return copy;
-		}
-
-		if ( is__object( variable ) ) {
-			var copy = {};
-			for ( var attr in variable ) {
-				if ( variable.hasOwnProperty( attr ) ) copy[attr] = clone( variable[attr] );
-			}
-			return copy;
-		}
-
-		return variable;
-	};
-
-	/* */
 
 	/*
 	|
