@@ -56,7 +56,7 @@ console.log(cd.compare(chat_1,chat_2));
 	}]
 }
 ```
-#### 4. 
+#### 2. 
 passing configurations
 ```
 // initiate
