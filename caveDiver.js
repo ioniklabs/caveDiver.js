@@ -23,7 +23,7 @@ var caveDiver = ( function( document, window ) {
 					return this_.options.callback.id_lhs( lhs ) === this_.options.callback.id_rhs( rhs );
 				},
 				compare: function( lhs, rhs ) {
-					return lhs.timestamp === rhs.timestamp;
+					return lhs.modified === rhs.modified;
 				}
 			}
 		};
